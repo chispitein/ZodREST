@@ -21,7 +21,7 @@ export const updateEstadoUserSchema = z.object({
     }),
     params: z.object({
         id: z.string()
-    })
+    }) 
 })
 
 export const deleteEstadoUserSchema = z.object({
