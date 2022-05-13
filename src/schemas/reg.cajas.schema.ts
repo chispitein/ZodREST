@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const regEstadoUserSchema = z.object({
+export const CajaSchema = z.object({
     body: z.object({
         TotalCaja: z.number().nonnegative('No puede ser negativo').min(50000, 'No contiene la suficiente cantidad de numeros'),
         TotalTarjeta: z.number().nonnegative('No puede ser negativo').min(1, 'No contiene la suficiente cantidad de numeros'),
@@ -12,7 +12,7 @@ export const regEstadoUserSchema = z.object({
     })
 })
 
-export const updateEstadoUserSchema = z.object({
+export const updateCajaSchema = z.object({
     body: z.object({
         TotalCaja: z.number().nonnegative('No puede ser negativo').min(50000, 'No contiene la suficiente cantidad de numeros').optional(),
         TotalTarjeta: z.number().nonnegative('No puede ser negativo').min(1, 'No contiene la suficiente cantidad de numeros').optional(),
@@ -24,7 +24,7 @@ export const updateEstadoUserSchema = z.object({
     }) 
 })
 
-export const deleteEstadoUserSchema = z.object({
+export const deleteCajaSchema = z.object({
     body: z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(4, 'No contiene la suficiente cantidad de numeros'),
     }),
