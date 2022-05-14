@@ -9,6 +9,7 @@ import UnidadMedidasRoutes from "./routes/Productos/unidadmedida.routes";
 import TipoProductRoutes from "./routes/Productos/tipoprod.routes";
 import HistoryRoutes from "./routes/Productos/history.routes";
 import ProvedorRoutes from "./routes/Compras/prov.routes";
+import FacturaRoutes from "./routes/Compras/factura.routes";
 
 
 const app = express()
@@ -23,6 +24,7 @@ app.use(UnidadMedidasRoutes)
 app.use(TipoProductRoutes)
 app.use(HistoryRoutes)
 app.use(ProvedorRoutes)
+app.use(FacturaRoutes)
 
 
 app.listen(3000)
