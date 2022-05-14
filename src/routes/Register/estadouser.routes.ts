@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createEstadoUser, updateEstadoUser, deleteEstadoUser } from "../controllers/reg.estadouser.controller";
-import { schemaValidation } from "../middlewares/schemaValidator.middleware";
-import { regEstadoUserSchema, updateEstadoUserSchema, deleteEstadoUserSchema } from "../schemas/reg.estadouser.schema";
+import { createEstadoUser, updateEstadoUser, deleteEstadoUser } from "../../controllers/register/estadouser.controller";
+import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
+import { regEstadoUserSchema, updateEstadoUserSchema, deleteEstadoUserSchema } from "../../schemas/Register/estadouser.schema";
 
 const router = Router();
 

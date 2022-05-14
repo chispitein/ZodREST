@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createUser, deleteUser, updateUser } from "../controllers/register.controller";
-import { schemaValidation } from "../middlewares/schemaValidator.middleware";
-import { deleteUserSchema, registerUserSchema, updateUserSchema } from "../schemas/register.schema";
+import { createUser, deleteUser, updateUser } from "../../controllers/register/register.controller";
+import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
+import { deleteUserSchema, registerUserSchema, updateUserSchema } from "../../schemas/Register/register.schema";
 
 const router = Router();
 

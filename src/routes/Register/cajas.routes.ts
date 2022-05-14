@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createCaja, updateCaja, deleteCaja } from "../controllers/reg.cajas.controller";
-import { schemaValidation } from "../middlewares/schemaValidator.middleware";
-import { CajaSchema, deleteCajaSchema, updateCajaSchema } from "../schemas/reg.cajas.schema";
+import { createCaja, updateCaja, deleteCaja } from "../../controllers/register/cajas.controller";
+import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
+import { CajaSchema, deleteCajaSchema, updateCajaSchema } from "../../schemas/Register/cajas.schema";
 
 const router = Router();
 
