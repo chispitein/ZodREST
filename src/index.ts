@@ -10,6 +10,11 @@ import TipoProductRoutes from "./routes/Productos/tipoprod.routes";
 import HistoryRoutes from "./routes/Productos/history.routes";
 import ProvedorRoutes from "./routes/Compras/prov.routes";
 import FacturaRoutes from "./routes/Compras/factura.routes";
+import DetFacturaRoutes from "./routes/Compras/detallefact.routes";
+import PedidosRoutes from "./routes/Compras/pedido.routes";
+import DetallePedidoRoutes from "./routes/Compras/detalleped.routes";
+import EstadoPedidoRoutes from "./routes/Compras/estadoped.routes";
+import WishListRoutes from "./routes/Compras/wishlist.routes";
 
 
 const app = express()
@@ -25,6 +30,12 @@ app.use(TipoProductRoutes)
 app.use(HistoryRoutes)
 app.use(ProvedorRoutes)
 app.use(FacturaRoutes)
+app.use(DetFacturaRoutes)
+app.use(PedidosRoutes)
+app.use(DetallePedidoRoutes)
+app.use(EstadoPedidoRoutes)
+app.use(WishListRoutes)
+
 
 
 app.listen(3000)
