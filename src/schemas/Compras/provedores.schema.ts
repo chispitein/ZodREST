@@ -17,7 +17,7 @@ export const updateProvedorSchema = z.object({
 
 export const deleteProvedorSchema = z.object({
     body: z.object({
-        pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros').optional(),
+        pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
         id: z.string() 

@@ -10,9 +10,9 @@ export const postdetPedidoSchema = z.object({
 
 export const updatedetPedidoSchema = z.object({
     body: z.object({
-        Producto: z.string().nonempty().min(3, 'Minimo 3 caracteres').max(45, 'Máximo 45 caracteres').optional(),
-        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
-        idPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()      
+        Producto: z.string().nonempty().min(3, 'Minimo 3 caracteres').max(45, 'Máximo 45 caracteres'),
+        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
+        idPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')      
     }),
     params: z.object({
         id: z.string()

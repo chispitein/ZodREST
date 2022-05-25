@@ -15,6 +15,11 @@ import PedidosRoutes from "./routes/Compras/pedido.routes";
 import DetallePedidoRoutes from "./routes/Compras/detalleped.routes";
 import EstadoPedidoRoutes from "./routes/Compras/estadoped.routes";
 import WishListRoutes from "./routes/Compras/wishlist.routes";
+import BoletasRoutes from "./routes/Ventas/boletas.routes";
+import DetalleBoletaRoutes from "./routes/Ventas/detallebol.routes";
+import TipoVentaRoutes from "./routes/Ventas/tipoventas.routes";
+import FiadoresRoutes from "./routes/Fiados/fiadores.routes";
+import CantFiadoRoutes from "./routes/Fiados/cantfiado.routes";
 
 
 const app = express()
@@ -35,6 +40,11 @@ app.use(PedidosRoutes)
 app.use(DetallePedidoRoutes)
 app.use(EstadoPedidoRoutes)
 app.use(WishListRoutes)
+app.use(BoletasRoutes)
+app.use(DetalleBoletaRoutes)
+app.use(TipoVentaRoutes)
+app.use(FiadoresRoutes)
+app.use(CantFiadoRoutes)
 
 
 

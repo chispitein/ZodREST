@@ -8,7 +8,7 @@ export const postestPedidoSchema = z.object({
 
 export const updateestPedidoSchema = z.object({
     body: z.object({
-        Estado: z.string().nonempty().min(3, 'Minimo 3 caracteres').max(45, 'Máximo 45 caracteres').optional()    
+        Estado: z.string().nonempty().min(3, 'Minimo 3 caracteres').max(45, 'Máximo 45 caracteres')    
     }),
     params: z.object({
         id: z.string()

@@ -1,25 +1,25 @@
 import { z } from "zod";
 
-export const postPedidoSchema = z.object({
+export const postFiadoresSchema = z.object({
     body: z.object({
-        idProvedor: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
+        Nombre: z.string().min(3).max(45),
         idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idEstadoPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
     })
 })
 
-export const updatePedidoSchema = z.object({
+export const updateFiadoresSchema = z.object({
     body: z.object({
-        idProvedor: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
+        Nombre: z.string().min(3).max(45),
         idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idEstadoPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
     }),
     params: z.object({
         id: z.string()
     })
 })
 
-export const deletePedidoSchema = z.object({
+export const deleteFiadoresSchema = z.object({
     body: z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
