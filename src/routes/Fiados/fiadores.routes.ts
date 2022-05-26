@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createFiadores, updateFiadores, deleteFiadores } from "../../controllers/Fiados/fiadores.schema";
+import { createFiadores, updateFiadores, deleteFiadores } from "../../controllers/Fiados/fiadores.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
 import { postFiadoresSchema, updateFiadoresSchema, deleteFiadoresSchema } from "../../schemas/Fiados/fiadores.schema";
 

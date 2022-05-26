@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { Request, Response } from "express";
+
 
 export const postCantidadFiadoSchema = z.object({
     body: z.object({

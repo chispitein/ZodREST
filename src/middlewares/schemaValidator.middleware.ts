@@ -14,7 +14,7 @@ export const schemaValidation = (schema: AnyZodObject) =>
     } catch (error) {
         if (error instanceof ZodError) {
             console.log(error)
-            return res.status(400).json(error.issues)
+            return res.status(400).json('error.issues')
         }
         console.log(error)
         return res.status(500).json({ Message: 'Internal server error' })
