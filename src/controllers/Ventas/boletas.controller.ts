@@ -2,6 +2,12 @@ import { Request, Response } from "express";
 import {connect} from "../../database";
 import { AnyZodObject, ZodError } from "zod";
 
+export async function getBoletas(req: Request, res: Response): Promise<Response> {
+    const conn = await connect();
+    const result = await conn.query('select * from cantidadfiado');
+    return res.json(result[0]);
+}
+
 export async function createBoletas(req: Request, res: Response){
     const pregunta :AnyZodObject = req.body
     const conn = await connect();

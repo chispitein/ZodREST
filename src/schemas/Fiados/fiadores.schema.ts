@@ -15,7 +15,7 @@ export const updateFiadoresSchema = z.object({
         idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
     }),
     params: z.object({
-        id: z.string()
+        idFiador: z.string()
     })
 })
 

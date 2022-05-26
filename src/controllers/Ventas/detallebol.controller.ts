@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
+import {connect} from "../../database";
+import { AnyZodObject, ZodError } from "zod";
 
-export const createDetBoletas = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+export async function createDetBoletas(req: Request, res: Response){
+    const pregunta :AnyZodObject = req.body
+    const conn = await connect();
+    const resultado = conn.query('INSERT INTO detalleboletas SET ?', [pregunta]);
     res.send('Creando Det Boletas');
 }
 

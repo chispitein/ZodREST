@@ -8,6 +8,16 @@ export const createFiadores = async (req: Request, res: Response) => {
     await conn.query('INSERT INTO boletas SET ?', [query]);
 }
 
+export async function getbyidFiador(req: Request, res: Response): Promise<Response> {
+    const conn = await connect();
+    const id = req.params.id
+    console.log(id)
+    const result = await conn.query('select * from fiadores where ?', req.params);
+    return res.json(result[0]);
+}
+
+
+
 export const updateFiadores = (req: Request, res: Response) => {
     console.log(req.body);
     console.log(req.params)

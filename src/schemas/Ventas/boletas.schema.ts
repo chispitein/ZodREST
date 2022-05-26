@@ -13,7 +13,7 @@ export const updateBoletaSchema = z.object({
         idTipoVenta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
     }),
     params: z.object({
-        id: z.string()
+        id: z.string().optional()
     })
 })
 
