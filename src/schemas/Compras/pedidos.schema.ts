@@ -10,9 +10,9 @@ export const postPedidoSchema = z.object({
 
 export const updatePedidoSchema = z.object({
     body: z.object({
-        idProvedor: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idEstadoPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        idProvedor: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idEstadoPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()
     }),
     params: z.object({
         id: z.string()

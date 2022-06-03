@@ -10,8 +10,8 @@ export const postDetalleBolSchema = z.object({
 
 export const updateDetalleBolSchema = z.object({
     body: z.object({
-        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
+        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
         idProdCodigo: z.string().max(60).min(3).optional()
     }),
     params: z.object({

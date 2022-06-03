@@ -11,8 +11,8 @@ export const postCantidadFiadoSchema = z.object({
 
 export const updateCantidadFiadoSchema = z.object({
     body: z.object({
-        idFiador: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        Cantidad: z.number().nonnegative('no puede ser negativo')
+        idFiador: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        Cantidad: z.number().nonnegative('no puede ser negativo').optional()
     }),
     params: z.object({
         id: z.string()

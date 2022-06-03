@@ -10,9 +10,9 @@ export const postFiadoresSchema = z.object({
 
 export const updateFiadoresSchema = z.object({
     body: z.object({
-        Nombre: z.string().min(3).max(45),
-        idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        Nombre: z.string().min(3).max(45).optional(),
+        idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idBoleta: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()
     }),
     params: z.object({
         idFiador: z.string()
@@ -24,6 +24,9 @@ export const deleteFiadoresSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idFiador: z.string()
+    }),
+    query: z.object({
+        id: z.void()
     })
-})
+}).strict();

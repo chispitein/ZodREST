@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { connect } from "../../database";
-import { AnyZodObject, ZodError } from "zod";
+import { AnyZodObject} from "zod";
+import parsequery from 'query-string'
 
 export const createFiadores = async (req: Request, res: Response) => {
     const query :AnyZodObject = req.body
@@ -10,9 +11,18 @@ export const createFiadores = async (req: Request, res: Response) => {
 
 export async function getbyidFiador(req: Request, res: Response): Promise<Response> {
     const conn = await connect();
-    const id = req.params.id
-    console.log(id)
-    const result = await conn.query('select * from fiadores where ?', req.params);
+    let count = Object.keys(req.query).length;
+    let cuenta = 0;
+    let sqlstring = 'select * from boletas where '
+    for (let i in req.query){
+        sqlstring = sqlstring + i + ' = ' + "'" +Object.values(req.query)[cuenta] + "' "
+        if (cuenta < count-1) {
+            sqlstring = sqlstring + 'and '        
+        }
+        cuenta++;
+    }
+    console.log(sqlstring)
+    const result = await conn.query(sqlstring);
     return res.json(result[0]);
 }
 
