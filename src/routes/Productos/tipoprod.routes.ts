@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createTipoProduct, updateTipoProduct, deleteTipoProduct } from "../../controllers/Productos/tipoprod.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { regTipoProductSchema, updateTipoProductSchema, deleteTipoProductSchema } from "../../schemas/Productos/tipoprod.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postTipoProductSchema, updateTipoProductSchema, deleteTipoProductSchema } from "../../schemas/Productos/tipoprod.schema";
 
 const router = Router();
 
-router.post('/tipoproduct', schemaValidation(regTipoProductSchema) ,createTipoProduct );
-router.put('/tipoproduct/:id', schemaValidation(updateTipoProductSchema) ,updateTipoProduct );
-router.delete('/tipoproduct/:id', schemaValidation(deleteTipoProductSchema) ,deleteTipoProduct );
+router.get('/tipoproducto/search', getFilterTabla('tipoproducto'))
+router.get('/tipoproducto/', getAllTabla('tipoproducto'))
+router.post('/tipoproducto', schemaValidation(postTipoProductSchema) , InsertRow('tipoproducto') );
+router.put('/tipoproducto/:idTipoProducto', schemaValidation(updateTipoProductSchema) , UpdateRow('tipoproducto') );
+router.delete('/tipoproducto/:idTipoProducto', schemaValidation(deleteTipoProductSchema) , deleteRow('tipoproducto') );
 
 export default router;

@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createproduct, deleteProduct, updateproduct } from "../../controllers/Productos/product.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { deleteProductSchema, productSchema, updateProductSchema } from "../../schemas/Productos/product.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postProductSchema, updateProductSchema, deleteProductSchema } from "../../schemas/Productos/product.schema";
 
 const router = Router();
 
-router.post('/products', schemaValidation(productSchema) ,createproduct );
-router.put('/products/:id', schemaValidation(updateProductSchema) ,updateproduct );
-router.put('/products/:id', schemaValidation(deleteProductSchema) ,deleteProduct);
+router.get('/productos/search', getFilterTabla('productos'))
+router.get('/productos/', getAllTabla('productos'))
+router.post('/productos', schemaValidation(postProductSchema) , InsertRow('productos') );
+router.put('/productos/:idProdCodigo', schemaValidation(updateProductSchema) , UpdateRow('productos') );
+router.delete('/productos/:idProdCodigo', schemaValidation(deleteProductSchema) , deleteRow('productos') );
 
 export default router;

@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createCaja, updateCaja, deleteCaja } from "../../controllers/register/cajas.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { CajaSchema, deleteCajaSchema, updateCajaSchema } from "../../schemas/Register/cajas.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postCajaSchema, updateCajaSchema, deleteCajaSchema } from "../../schemas/Register/cajas.schema";
 
 const router = Router();
 
-router.post('/cajas/:id', schemaValidation(CajaSchema) , createCaja );
-router.put('/cajas/:id', schemaValidation(updateCajaSchema) ,updateCaja );
-router.delete('/cajas/:id', schemaValidation(deleteCajaSchema) ,deleteCaja );
+router.get('/cajas/search', getFilterTabla('cajas'))
+router.get('/cajas/', getAllTabla('cajas'))
+router.post('/cajas', schemaValidation(postCajaSchema) , InsertRow('cajas') );
+router.put('/cajas/:idCaja', schemaValidation(updateCajaSchema) , UpdateRow('cajas') );
+router.delete('/cajas/:idCaja', schemaValidation(deleteCajaSchema) , deleteRow('cajas') );
 
 export default router;

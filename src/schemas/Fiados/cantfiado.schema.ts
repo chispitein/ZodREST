@@ -15,7 +15,7 @@ export const updateCantidadFiadoSchema = z.object({
         Cantidad: z.number().nonnegative('no puede ser negativo').optional()
     }),
     params: z.object({
-        id: z.string()
+        idCantidadFiado: z.string()
     })
 })
 
@@ -24,6 +24,6 @@ export const deleteCantidadFiadoSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idCantidadFiado: z.string()
     })
 })

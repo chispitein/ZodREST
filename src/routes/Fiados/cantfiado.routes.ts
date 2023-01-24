@@ -1,13 +1,14 @@
 import { Router } from "express";
-import { createCantFiado, updateCantFiado, deleteCantFiado, getCantFiado } from "../../controllers/Fiados/cantfiado.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { postCantidadFiadoSchema, updateCantidadFiadoSchema, deleteCantidadFiadoSchema,} from "../../schemas/Fiados/cantfiado.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import {postCantidadFiadoSchema, updateCantidadFiadoSchema, deleteCantidadFiadoSchema}  from "../../schemas/Fiados/cantfiado.schema";
 
 const router = Router();
 
-router.get('/cantfiado', getCantFiado );
-router.post('/cantfiado/', schemaValidation(postCantidadFiadoSchema) , createCantFiado );
-router.put('/cantfiado/:id', schemaValidation(updateCantidadFiadoSchema) , updateCantFiado );
-router.delete('/cantfiado/:id', schemaValidation(deleteCantidadFiadoSchema) , deleteCantFiado );
+router.get('/cantidadfiado/search', getFilterTabla('cantidadfiado'))
+router.get('/cantidadfiado/', getAllTabla('cantidadfiado'))
+router.post('/cantidadfiado', schemaValidation(postCantidadFiadoSchema) , InsertRow('cantidadfiado') );
+router.put('/cantidadfiado/:idCantidadFiado', schemaValidation(updateCantidadFiadoSchema) , UpdateRow('cantidadfiado') );
+router.delete('/cantidadfiado/:idCantidadFiado', schemaValidation(deleteCantidadFiadoSchema) , deleteRow('cantidadfiado') );
 
 export default router;

@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createPedido, updatePedido, deletePedido } from "../../controllers/Compras/pedido.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { postPedidoSchema, updatePedidoSchema, deletePedidoSchema } from "../../schemas/Compras/pedidos.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import {postPedidoSchema, updatePedidoSchema, deletePedidoSchema}  from "../../schemas/Compras/pedidos.schema";
 
 const router = Router();
 
-router.post('/pedidos', schemaValidation(postPedidoSchema) , createPedido );
-router.put('/pedidos/:id', schemaValidation(updatePedidoSchema) , updatePedido );
-router.delete('/pedidos/:id', schemaValidation(deletePedidoSchema) , deletePedido );
+router.get('/pedidos/search', getFilterTabla('pedidos'))
+router.get('/pedidos/', getAllTabla('pedidos'))
+router.post('/pedidos', schemaValidation(postPedidoSchema) , InsertRow('pedidos') );
+router.put('/pedidos/:idPedido', schemaValidation(updatePedidoSchema) , UpdateRow('pedidos') );
+router.delete('/pedidos/:idPedido', schemaValidation(deletePedidoSchema) , deleteRow('pedidos') );
 
 export default router;

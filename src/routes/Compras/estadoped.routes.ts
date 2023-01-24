@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createEstPedidos, updateEstPedidos, deleteEstPedidos } from "../../controllers/Compras/estadoped.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { postestPedidoSchema, updateestPedidoSchema, deleteestPedidoSchema } from "../../schemas/Compras/estadopedido.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import {postestPedidoSchema, updateestPedidoSchema, deleteestPedidoSchema}  from "../../schemas/Compras/estadopedido.schema";
 
 const router = Router();
 
-router.post('/estpedidos', schemaValidation(postestPedidoSchema) , createEstPedidos );
-router.put('/estpedidos/:id', schemaValidation(updateestPedidoSchema) , updateEstPedidos );
-router.delete('/estpedidos/:id', schemaValidation(deleteestPedidoSchema) , deleteEstPedidos );
+router.get('/estadopedido/search', getFilterTabla('estadopedido'))
+router.get('/estadopedido/', getAllTabla('estadopedido'))
+router.post('/estadopedido', schemaValidation(postestPedidoSchema) , InsertRow('estadopedido') );
+router.put('/estadopedido/:idEstadoPedido', schemaValidation(updateestPedidoSchema) , UpdateRow('estadopedido') );
+router.delete('/estadopedido/:idEstadoPedido', schemaValidation(deleteestPedidoSchema) , deleteRow('estadopedido') );
 
 export default router;

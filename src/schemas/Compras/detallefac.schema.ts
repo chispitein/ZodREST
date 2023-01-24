@@ -10,9 +10,9 @@ export const postdetFacturaSchema = z.object({
 
 export const updatedetFacturaSchema = z.object({
     body: z.object({
-        idFactura: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idProdCodigo: z.string().max(60).min(3),
-        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        idFactura: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idProdCodigo: z.string().max(60).min(3).optional(),
+        Cantidad: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()
     }),
     params: z.object({
         idDetalleCompra: z.string()
@@ -25,5 +25,8 @@ export const deletedetFacturaSchema = z.object({
     }),
     params: z.object({
         idDetalleCompra: z.string()
+    }),
+    query: z.object({
+        id: z.void()
     })
-})
+}).strict();

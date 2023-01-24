@@ -13,7 +13,7 @@ export const updateFacturaSchema = z.object({
         idUser: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
     }),
     params: z.object({
-        id: z.string()
+        idFactura: z.string()
     })
 })
 
@@ -22,6 +22,6 @@ export const deleteFacturaSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idFactura: z.string()
     })
 })

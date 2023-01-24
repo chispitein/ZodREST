@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createWishList, updateWishList, deleteWishList } from "../../controllers/Compras/wishlist.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { postWishListSchema, updateWishListSSchema, deleteWishListSSchema } from "../../schemas/Compras/wishlist.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import {postWishListSchema, updateWishListSSchema, deleteWishListSSchema}  from "../../schemas/Compras/wishlist.schema";
 
 const router = Router();
 
-router.post('/wishlist', schemaValidation(postWishListSchema) , createWishList );
-router.put('/wishlist/:id', schemaValidation(updateWishListSSchema) , updateWishList );
-router.delete('/wishlist/:id', schemaValidation(deleteWishListSSchema) , deleteWishList );
+router.get('/wishlist/search', getFilterTabla('wishlist'))
+router.get('/wishlist/', getAllTabla('wishlist'))
+router.post('/wishlist', schemaValidation(postWishListSchema) , InsertRow('wishlist') );
+router.put('/wishlist/:idWishList', schemaValidation(updateWishListSSchema) , UpdateRow('wishlist') );
+router.delete('/wishlist/:idWishList', schemaValidation(deleteWishListSSchema) , deleteRow('wishlist') );
 
 export default router;

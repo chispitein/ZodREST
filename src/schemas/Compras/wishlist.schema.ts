@@ -11,7 +11,7 @@ export const updateWishListSSchema = z.object({
         Producto: z.string().nonempty().min(3, 'Minimo 3 caracteres').max(45, 'Máximo 45 caracteres')    
     }),
     params: z.object({
-        id: z.string()
+        idWishList: z.string()
     })
 })
 
@@ -20,6 +20,6 @@ export const deleteWishListSSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idWishList: z.string()
     })
 })

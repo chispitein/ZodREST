@@ -11,4 +11,5 @@ router.post('/detallefacturas', schemaValidation(postdetFacturaSchema) , InsertR
 router.put('/detallefacturas/:idDetalleCompra', schemaValidation(updatedetFacturaSchema) , UpdateRow('detallefacturas') );
 router.delete('/detallefacturas/:idDetalleCompra', schemaValidation(deletedetFacturaSchema) , deleteRow('detallefacturas') );
 
+
 export default router;

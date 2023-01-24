@@ -1,12 +1,15 @@
 import { Router } from "express";
-import { createFactura, updateFactura, deleteFactura } from "../../controllers/Compras/factura.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { postFacturaSchema, updateFacturaSchema, deleteFacturaSchema } from "../../schemas/Compras/factura.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import {postFacturaSchema, updateFacturaSchema, deleteFacturaSchema}  from "../../schemas/Compras/factura.schema";
 
 const router = Router();
 
-router.post('/facturas', schemaValidation(postFacturaSchema) , createFactura );
-router.put('/facturas/:id', schemaValidation(updateFacturaSchema) , updateFactura );
-router.delete('/facturas/:id', schemaValidation(deleteFacturaSchema) , deleteFactura );
+router.get('/facturas/search', getFilterTabla('facturas'))
+router.get('/facturas/', getAllTabla('facturas'))
+router.post('/facturas', schemaValidation(postFacturaSchema) , InsertRow('facturas') );
+router.put('/facturas/:idFactura', schemaValidation(updateFacturaSchema) , UpdateRow('facturas') );
+router.delete('/facturas/:idFactura', schemaValidation(deleteFacturaSchema) , deleteRow('facturas') );
 
 export default router;
+

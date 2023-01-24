@@ -15,7 +15,7 @@ export const updatePedidoSchema = z.object({
         idEstadoPedido: z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()
     }),
     params: z.object({
-        id: z.string()
+        idPedido: z.string()
     })
 })
 
@@ -24,6 +24,6 @@ export const deletePedidoSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idPedido: z.string()
     })
 })

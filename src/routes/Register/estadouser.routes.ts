@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createEstadoUser, updateEstadoUser, deleteEstadoUser } from "../../controllers/register/estadouser.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { regEstadoUserSchema, updateEstadoUserSchema, deleteEstadoUserSchema } from "../../schemas/Register/estadouser.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postEstadoUserSchema, updateEstadoUserSchema, deleteEstadoUserSchema } from "../../schemas/Register/estadouser.schema";
 
 const router = Router();
 
-router.post('/estadouser', schemaValidation(regEstadoUserSchema) ,createEstadoUser );
-router.put('/estadouser/:id', schemaValidation(updateEstadoUserSchema) ,updateEstadoUser );
-router.delete('/estadouser/:id', schemaValidation(deleteEstadoUserSchema) ,deleteEstadoUser );
+router.get('/estadouser/search', getFilterTabla('estadouser'))
+router.get('/estadouser/', getAllTabla('estadouser'))
+router.post('/estadouser', schemaValidation(postEstadoUserSchema) , InsertRow('estadouser') );
+router.put('/estadouser/:idEstadoUser', schemaValidation(updateEstadoUserSchema) , UpdateRow('estadouser') );
+router.delete('/estadouser/:idEstadoUser', schemaValidation(deleteEstadoUserSchema) , deleteRow('estadouser') );
 
 export default router;

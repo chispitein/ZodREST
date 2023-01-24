@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createUser, deleteUser, updateUser } from "../../controllers/register/register.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { deleteUserSchema, registerUserSchema, updateUserSchema } from "../../schemas/Register/register.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postUserSchema, updateUserSchema, deleteUserSchema } from "../../schemas/Register/register.schema";
 
 const router = Router();
 
-router.post('/register', schemaValidation(registerUserSchema) ,createUser );
-router.put('/register/:id', schemaValidation(updateUserSchema) ,updateUser );
-router.delete('/register/:id', schemaValidation(deleteUserSchema) ,deleteUser );
+router.get('/usuarios/search', getFilterTabla('usuarios'))
+router.get('/usuarios/', getAllTabla('usuarios'))
+router.post('/usuarios', schemaValidation(postUserSchema) , InsertRow('usuarios') );
+router.put('/usuarios/:idUser', schemaValidation(updateUserSchema) , UpdateRow('usuarios') );
+router.delete('/usuarios/:idUser', schemaValidation(deleteUserSchema) , deleteRow('usuarios') );
 
 export default router;

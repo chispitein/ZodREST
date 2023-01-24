@@ -15,7 +15,7 @@ export const updateDetalleBolSchema = z.object({
         idProdCodigo: z.string().max(60).min(3).optional()
     }),
     params: z.object({
-        id: z.string()
+        idDetalleBoleta: z.string()
     })
 })
 
@@ -24,6 +24,6 @@ export const deleteDetalleBolSchema = z.object({
         pass: z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: z.object({
-        id: z.string()
+        idDetalleBoleta: z.string()
     })
 })

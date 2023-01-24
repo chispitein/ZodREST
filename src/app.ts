@@ -21,6 +21,7 @@ import DetalleBoletaRoutes from "./routes/Ventas/detallebol.routes";
 import TipoVentaRoutes from "./routes/Ventas/tipoventas.routes";
 import FiadoresRoutes from "./routes/Fiados/fiadores.routes";
 import CantFiadoRoutes from "./routes/Fiados/cantfiado.routes";
+import cors from 'cors'
 
 export class App {
 
@@ -34,6 +35,7 @@ export class App {
     }
 
     settings() {
+        this.app.use(cors());
         this.app.set('port', this.port || 3000 || process.env.port);
     }
 

@@ -1,12 +1,14 @@
 import { Router } from "express";
-import { createUnidadMedida, updateUnidadMedida, deleteUnidadMedida } from "../../controllers/Productos/unidadmedida.controller";
 import { schemaValidation } from "../../middlewares/schemaValidator.middleware";
-import { UnidadMedidaSchema, updateUnidadMedidaSchema, deleteUnidadMedidaSchema } from "../../schemas/Productos/unmedida.schema";
+import { InsertRow, getAllTabla, getFilterTabla, deleteRow, UpdateRow } from "../../middlewares/get.middleware";
+import { postUnidadMedidaSchema, updateUnidadMedidaSchema, deleteUnidadMedidaSchema } from "../../schemas/Productos/unmedida.schema";
 
 const router = Router();
 
-router.post('/umedida', schemaValidation(UnidadMedidaSchema) ,createUnidadMedida );
-router.put('/umedida/:id', schemaValidation(updateUnidadMedidaSchema) , updateUnidadMedida );
-router.delete('/umedida/:id', schemaValidation(deleteUnidadMedidaSchema) , deleteUnidadMedida );
+router.get('/unidadmedidas/search', getFilterTabla('unidadmedidas'))
+router.get('/unidadmedidas/', getAllTabla('unidadmedidas'))
+router.post('/unidadmedidas', schemaValidation(postUnidadMedidaSchema) , InsertRow('unidadmedidas') );
+router.put('/unidadmedidas/:idUnidadMedida', schemaValidation(updateUnidadMedidaSchema) , UpdateRow('unidadmedidas') );
+router.delete('/unidadmedidas/:idUnidadMedida', schemaValidation(deleteUnidadMedidaSchema) , deleteRow('unidadmedidas') );
 
 export default router;
