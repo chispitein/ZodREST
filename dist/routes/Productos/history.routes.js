@@ -1,12 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const history_controller_1 = require("../../controllers/Productos/history.controller");
 const schemaValidator_middleware_1 = require("../../middlewares/schemaValidator.middleware");
+const get_middleware_1 = require("../../middlewares/get.middleware");
 const history_schema_1 = require("../../schemas/Productos/history.schema");
 const router = (0, express_1.Router)();
-router.post('/history', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.registerHistorySchema), history_controller_1.createHistory);
-router.put('/history/:id', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.updateHistorySchema), history_controller_1.updateHistory);
-router.delete('/history/:id', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.deleteHistorySchema), history_controller_1.deleteHistory);
+router.get('/historial/search', (0, get_middleware_1.getFilterTabla)('historial'));
+router.get('/historial/', (0, get_middleware_1.getAllTabla)('historial'));
+router.post('/historial', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.postHistorySchema), (0, get_middleware_1.InsertRow)('historial'));
+router.put('/historial/:idHistorial', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.updateHistorySchema), (0, get_middleware_1.UpdateRow)('historial'));
+router.delete('/historial/:idHistorial', (0, schemaValidator_middleware_1.schemaValidation)(history_schema_1.deleteHistorySchema), (0, get_middleware_1.deleteRow)('historial'));
 exports.default = router;
 //# sourceMappingURL=history.routes.js.map

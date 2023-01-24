@@ -12,7 +12,7 @@ exports.updateTipoVentaSchema = zod_1.z.object({
         Tipo: zod_1.z.string().nonempty().min(3, 'Minimo 3 caracteres').max(40, 'Máximo 65 caracteres')
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idTipoVenta: zod_1.z.string()
     })
 });
 exports.deleteTipoVentarSchema = zod_1.z.object({
@@ -20,7 +20,7 @@ exports.deleteTipoVentarSchema = zod_1.z.object({
         pass: zod_1.z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idTipoVenta: zod_1.z.string()
     })
 });
 //# sourceMappingURL=tipoventas.schema.js.map

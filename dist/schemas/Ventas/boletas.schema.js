@@ -14,7 +14,7 @@ exports.updateBoletaSchema = zod_1.z.object({
         idTipoVenta: zod_1.z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idBoleta: zod_1.z.string().optional()
     })
 });
 exports.deleteBoletaSchema = zod_1.z.object({
@@ -22,7 +22,7 @@ exports.deleteBoletaSchema = zod_1.z.object({
         pass: zod_1.z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idBoleta: zod_1.z.string()
     })
 });
 //# sourceMappingURL=boletas.schema.js.map

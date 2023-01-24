@@ -36,6 +36,7 @@ const detallebol_routes_1 = __importDefault(require("./routes/Ventas/detallebol.
 const tipoventas_routes_1 = __importDefault(require("./routes/Ventas/tipoventas.routes"));
 const fiadores_routes_1 = __importDefault(require("./routes/Fiados/fiadores.routes"));
 const cantfiado_routes_1 = __importDefault(require("./routes/Fiados/cantfiado.routes"));
+const cors_1 = __importDefault(require("cors"));
 class App {
     constructor(port) {
         this.port = port;
@@ -45,6 +46,7 @@ class App {
         this.routes();
     }
     settings() {
+        this.app.use((0, cors_1.default)());
         this.app.set('port', this.port || 3000 || process.env.port);
     }
     routes() {

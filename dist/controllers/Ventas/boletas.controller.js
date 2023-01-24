@@ -9,13 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteBoletas = exports.updateBoletas = exports.createBoletas = void 0;
+exports.deleteBoletas = exports.updateBoletas = exports.createBoletas = exports.getBoletas = void 0;
 const database_1 = require("../../database");
+function getBoletas(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield (0, database_1.connect)();
+        const result = yield conn.query('select * from cantidadfiado');
+        return res.json(result[0]);
+    });
+}
+exports.getBoletas = getBoletas;
 function createBoletas(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const pregunta = req.body;
         const conn = yield (0, database_1.connect)();
-        const resultado = yield conn.query('INSERT INTO boletas SET ?', [pregunta]);
+        const resultado = conn.query('INSERT INTO boletas SET ?', [pregunta]);
         res.send('Creando Boletas');
     });
 }

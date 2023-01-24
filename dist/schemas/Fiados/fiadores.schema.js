@@ -11,12 +11,12 @@ exports.postFiadoresSchema = zod_1.z.object({
 });
 exports.updateFiadoresSchema = zod_1.z.object({
     body: zod_1.z.object({
-        Nombre: zod_1.z.string().min(3).max(45),
-        idUser: zod_1.z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1'),
-        idBoleta: zod_1.z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1')
+        Nombre: zod_1.z.string().min(3).max(45).optional(),
+        idUser: zod_1.z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional(),
+        idBoleta: zod_1.z.number().nonnegative('no puede ser negativo').min(1, 'menor que 1').optional()
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idFiador: zod_1.z.string()
     })
 });
 exports.deleteFiadoresSchema = zod_1.z.object({
@@ -24,7 +24,10 @@ exports.deleteFiadoresSchema = zod_1.z.object({
         pass: zod_1.z.number().nonnegative('No puede ser negativo').min(6, 'No contiene la suficiente cantidad de numeros'),
     }),
     params: zod_1.z.object({
-        id: zod_1.z.string()
+        idFiador: zod_1.z.string()
+    }),
+    query: zod_1.z.object({
+        id: zod_1.z.void()
     })
-});
+}).strict();
 //# sourceMappingURL=fiadores.schema.js.map
