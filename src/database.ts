@@ -4,8 +4,9 @@ import {createPool} from "mysql2/promise"
 
 export async function connect(){
     const mmelyconnection = await createPool({
-        host: 'localhost',
-        user: 'root',
+        host: 'mmelymysql.cz5fvuemhkod.sa-east-1.rds.amazonaws.com',
+        user: 'Chispitein',
+        password: 'Dalealbo7',
         database: 'mmely',
         connectionLimit: 10
     });
