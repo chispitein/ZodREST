@@ -69,7 +69,7 @@ export class App {
     }
 
     async listen() {
-        await this.app.listen(this.app.get('port'));
+        await this.app.listen(this.app.get('port'), '172.31.46.3');
         console.log('server on port ', 3000);
     }
 

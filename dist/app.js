@@ -78,7 +78,7 @@ class App {
     }
     listen() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.app.listen(this.app.get('port'));
+            yield this.app.listen(this.app.get('port'), '172.31.46.3');
             console.log('server on port ', 3000);
         });
     }
