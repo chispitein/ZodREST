@@ -36,7 +36,7 @@ export class App {
 
     settings() {
         this.app.use(cors());
-        this.app.set('port', this.port || 3000 || process.env.port);
+        this.app.set('port', this.port || 980 || process.env.port);
     }
 
     routes() {
@@ -69,8 +69,8 @@ export class App {
     }
 
     async listen() {
-        await this.app.listen(this.app.get('port'), '172.31.46.3');
-        console.log('server on port ', 3000);
+        await this.app.listen(this.app.get('port'));
+        console.log('server on port ', 980);
     }
 
 }

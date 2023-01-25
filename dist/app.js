@@ -47,7 +47,7 @@ class App {
     }
     settings() {
         this.app.use((0, cors_1.default)());
-        this.app.set('port', this.port || 3000 || process.env.port);
+        this.app.set('port', this.port || 980 || process.env.port);
     }
     routes() {
         this.app.use(express_1.default.json());
@@ -78,8 +78,8 @@ class App {
     }
     listen() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.app.listen(this.app.get('port'), '172.31.46.3');
-            console.log('server on port ', 3000);
+            yield this.app.listen(this.app.get('port'));
+            console.log('server on port ', 980);
         });
     }
 }
