@@ -36,7 +36,7 @@ export class App {
 
     settings() {
         this.app.use(cors());
-        this.app.set('port', this.port || 980 || process.env.port);
+        this.app.set('port', this.port || 3000 || process.env.port);
     }
 
     routes() {
