@@ -21,6 +21,7 @@ import DetalleBoletaRoutes from "./routes/Ventas/detallebol.routes";
 import TipoVentaRoutes from "./routes/Ventas/tipoventas.routes";
 import FiadoresRoutes from "./routes/Fiados/fiadores.routes";
 import CantFiadoRoutes from "./routes/Fiados/cantfiado.routes";
+import ProdPreciosRoutes from "./routes/Productos/prodprecios.routes"
 import cors from 'cors'
 
 export class App {
@@ -62,6 +63,8 @@ export class App {
         this.app.use(TipoVentaRoutes)
         this.app.use(FiadoresRoutes)
         this.app.use(CantFiadoRoutes)
+        this.app.use(ProdPreciosRoutes)
+
     }
 
     middlewares() {
