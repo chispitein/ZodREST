@@ -86,3 +86,18 @@ export const UpdateRow = (tabla: string) => async (req: Request, res: Response) 
         return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error })
     }
 }
+
+//Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
+export const getInnerTablas = ( rows: string, tabla: string) => async (req: Request, res: Response) => {
+    try {
+        const conn = await connect();
+        try {
+            const result = await conn.query('select ' + rows + ' from ' + tabla);
+            return res.json(result[0]);
+        } catch (error) {
+            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: error })
+        }
+    } catch (error) {
+        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error })
+    }
+}
