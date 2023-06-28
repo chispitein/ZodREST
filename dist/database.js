@@ -14,9 +14,9 @@ const promise_1 = require("mysql2/promise");
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         const mmelyconnection = yield (0, promise_1.createPool)({
-            host: 'mmelymysql.cz5fvuemhkod.sa-east-1.rds.amazonaws.com',
-            user: 'Chispitein',
-            password: 'Dalealbo7',
+            host: 'localhost',
+            user: 'chispa',
+            password: 'dalealbo7',
             database: 'mmely',
             connectionLimit: 10
         });

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateRow = exports.InsertRow = exports.deleteRow = exports.getFilterTabla = exports.getAllTabla = void 0;
+exports.getInnerTablas = exports.UpdateRow = exports.InsertRow = exports.deleteRow = exports.getFilterTabla = exports.getAllTabla = void 0;
 const database_1 = require("../database");
 //Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
 const getAllTabla = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -107,4 +107,21 @@ const UpdateRow = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.UpdateRow = UpdateRow;
+//Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
+const getInnerTablas = (rows, tabla) => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const conn = yield (0, database_1.connect)();
+        try {
+            const result = yield conn.query('select ' + rows + ' from ' + tabla);
+            return res.json(result[0]);
+        }
+        catch (error) {
+            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: error });
+        }
+    }
+    catch (error) {
+        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+    }
+});
+exports.getInnerTablas = getInnerTablas;
 //# sourceMappingURL=get.middleware.js.map

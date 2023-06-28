@@ -36,6 +36,7 @@ const detallebol_routes_1 = __importDefault(require("./routes/Ventas/detallebol.
 const tipoventas_routes_1 = __importDefault(require("./routes/Ventas/tipoventas.routes"));
 const fiadores_routes_1 = __importDefault(require("./routes/Fiados/fiadores.routes"));
 const cantfiado_routes_1 = __importDefault(require("./routes/Fiados/cantfiado.routes"));
+const prodprecios_routes_1 = __importDefault(require("./routes/Productos/prodprecios.routes"));
 const cors_1 = __importDefault(require("cors"));
 class App {
     constructor(port) {
@@ -47,7 +48,7 @@ class App {
     }
     settings() {
         this.app.use((0, cors_1.default)());
-        this.app.set('port', this.port || 980 || process.env.port);
+        this.app.set('port', process.env.port || this.port || 3000);
     }
     routes() {
         this.app.use(express_1.default.json());
@@ -72,6 +73,7 @@ class App {
         this.app.use(tipoventas_routes_1.default);
         this.app.use(fiadores_routes_1.default);
         this.app.use(cantfiado_routes_1.default);
+        this.app.use(prodprecios_routes_1.default);
     }
     middlewares() {
         this.app.use((0, morgan_1.default)('dev'));
@@ -79,7 +81,7 @@ class App {
     listen() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.app.listen(this.app.get('port'));
-            console.log('server on port ', 980);
+            console.log('server on port ', this.app.get('port'));
         });
     }
 }
