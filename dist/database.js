@@ -15,7 +15,7 @@ function connect() {
     return __awaiter(this, void 0, void 0, function* () {
         const mmelyconnection = yield (0, promise_1.createPool)({
             host: 'localhost',
-            user: 'root',
+            user: 'chispa',
             password: 'dalealbo7',
             database: 'mmely',
             connectionLimit: 10
