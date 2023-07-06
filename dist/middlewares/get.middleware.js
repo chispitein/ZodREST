@@ -9,22 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getInnerTablas = exports.UpdateRow = exports.InsertRow = exports.deleteRow = exports.getFilterTabla = exports.getAllTabla = void 0;
+exports.getoneInnerTables = exports.getInnerTablas = exports.UpdateRow = exports.InsertRow = exports.deleteRow = exports.getFilterTabla = exports.getAllTabla = void 0;
 const database_1 = require("../database");
 //Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
 const getAllTabla = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, database_1.connect)();
         try {
-            const result = yield conn.query('select * from ' + tabla);
+            const result = yield conn.query("select * from " + tabla);
             return res.json(result[0]);
         }
         catch (error) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: error });
+            return res.status(500).json({
+                Message: "Problemas con el servidor SQL (2)",
+                Evento: error,
+            });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.getAllTabla = getAllTabla;
@@ -35,11 +40,17 @@ const getFilterTabla = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0
         try {
             let count = Object.keys(req.query).length;
             let cuenta = 0;
-            let sqlstring = 'select * from ' + tabla + ' where ';
+            let sqlstring = "select * from " + tabla + " where ";
             for (let i in req.query) {
-                sqlstring = sqlstring + i + ' LIKE ' + "'%" + Object.values(req.query)[cuenta] + "%' ";
+                sqlstring =
+                    sqlstring +
+                        i +
+                        " LIKE " +
+                        "'%" +
+                        Object.values(req.query)[cuenta] +
+                        "%' ";
                 if (cuenta < count - 1) {
-                    sqlstring = sqlstring + 'and ';
+                    sqlstring = sqlstring + "and ";
                 }
                 cuenta++;
             }
@@ -48,11 +59,15 @@ const getFilterTabla = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0
             return res.json(result[0]);
         }
         catch (err) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: err });
+            return res
+                .status(500)
+                .json({ Message: "Problemas con el servidor SQL (2)", Evento: err });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.getFilterTabla = getFilterTabla;
@@ -61,15 +76,19 @@ const deleteRow = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const conn = yield (0, database_1.connect)();
         try {
-            const result = yield conn.query('delete from ' + tabla + ' where ?', req.params);
+            const result = yield conn.query("delete from " + tabla + " where ?", req.params);
             return res.json({ FilasAfectadas: Object.values(result[0])[1] });
         }
         catch (err) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: err });
+            return res
+                .status(500)
+                .json({ Message: "Problemas con el servidor SQL (2)", Evento: err });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.deleteRow = deleteRow;
@@ -82,46 +101,88 @@ const InsertRow = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, fun
             return res.json({ FilasAfectadas: Object.values(resultado[0])[1] });
         }
         catch (error) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: error });
+            return res.status(500).json({
+                Message: "Problemas con el servidor SQL (2)",
+                Evento: error,
+            });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.InsertRow = InsertRow;
-//Actualiza datos de la tabla mediante el req body para los registros y el req params para saber el id 
+//Actualiza datos de la tabla mediante el req body para los registros y el req params para saber el id
 const UpdateRow = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, database_1.connect)();
         try {
-            const result = yield conn.query('update ' + tabla + ' set ? where ?', [req.body, req.params]);
-            return res.json({ FilasAfectadas: Object.values(result[0])[1], Parametros: req.body });
+            const result = yield conn.query("update " + tabla + " set ? where ?", [
+                req.body,
+                req.params,
+            ]);
+            return res.json({
+                FilasAfectadas: Object.values(result[0])[1],
+                Parametros: req.body,
+            });
         }
         catch (err) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: err });
+            return res
+                .status(500)
+                .json({ Message: "Problemas con el servidor SQL (2)", Evento: err });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.UpdateRow = UpdateRow;
 //Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
-const getInnerTablas = (rows, tabla) => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getInnerTablas = () => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, database_1.connect)();
         try {
-            const result = yield conn.query('select ' + rows + ' from ' + tabla);
-            return res.json(result[0]);
+            const result = yield conn.query("select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida;");
+            console.log("");
+            return yield res.json(result[0]);
         }
         catch (error) {
-            return res.status(500).json({ Message: 'Problemas con el servidor SQL (2)', Evento: error });
+            return res
+                .status(500)
+                .json({ Message: "Problemas con el servidor SQL (2)", Evento: error });
         }
     }
     catch (error) {
-        return res.status(500).json({ Message: 'Problemas al conectarse a la DB', Evento: error });
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
     }
 });
 exports.getInnerTablas = getInnerTablas;
+const getoneInnerTables = () => (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const conn = yield (0, database_1.connect)();
+        try {
+            const result = yield conn.query("select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida WHERE productos.idProdCodigo = ", req.params);
+            console.log("");
+            return yield res.json(result[0]);
+        }
+        catch (error) {
+            return res.status(500).json({
+                Message: "Problemas con el servidor SQL (2)",
+                Evento: error,
+            });
+        }
+    }
+    catch (error) {
+        return res
+            .status(500)
+            .json({ Message: "Problemas al conectarse a la DB", Evento: error });
+    }
+});
+exports.getoneInnerTables = getoneInnerTables;
 //# sourceMappingURL=get.middleware.js.map
