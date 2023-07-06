@@ -18,6 +18,6 @@ import {
 const router = Router();
 
 router.get("/prodprecios", getInnerTablas());
-router.get("/historial/search", getoneInnerTables());
+router.get("/prodprecios/search", getoneInnerTables());
 
 export default router;
