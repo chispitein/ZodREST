@@ -157,10 +157,11 @@ export const getInnerTablas = () => async (req: Request, res: Response) => {
 
 export const getoneInnerTables = () => async (req: Request, res: Response) => {
   try {
+    console.log(req.params);
     const conn = await connect();
     try {
       const result = await conn.query(
-        "select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida WHERE productos.",
+        "select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida WHERE productos. ?",
         req.params
       );
       console.log("");
