@@ -168,7 +168,7 @@ const getoneInnerTables = () => (req, res) => __awaiter(void 0, void 0, void 0, 
         console.log(req.params);
         const conn = yield (0, database_1.connect)();
         try {
-            const result = yield conn.query("select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida WHERE productos. ?", req.params);
+            const result = yield conn.query("select productos.idProdCodigo, productos.NombreProd ,productos.NombreProd, productos.Cantidad, tipoproducto.TipoProducto,historial.PrecioCompra ,historial.PrecioVenta, historial.PorGanancia, unidadmedidas.Unidad from productos join historial on historial.idProdCodigo = productos.idProdCodigo JOIN tipoproducto on productos.idTipoProducto = tipoproducto.idTipoProducto JOIN unidadmedidas on unidadmedidas.idUnidadMedida = productos.idUnidadMedida WHERE productos. ?", [req.params]);
             console.log("");
             return yield res.json(result[0]);
         }
