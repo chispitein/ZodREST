@@ -156,7 +156,7 @@ export const getInnerTablas = () => async (req: Request, res: Response) => {
 
 export const getoneInnerTables = () => async (req: Request, res: Response) => {
   try {
-    console.log("request: " + req.params);
+    console.log("request: " + JSON.stringify(req.params));
     const conn = await connect();
     try {
       const result = await conn.query(
