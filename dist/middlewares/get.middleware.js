@@ -97,8 +97,11 @@ const InsertRow = (tabla) => (req, res) => __awaiter(void 0, void 0, void 0, fun
     try {
         const conn = yield (0, database_1.connect)();
         try {
-            const resultado = yield conn.query("INSERT INTO " + tabla + " SET ?  ", req.body);
-            return res.json({ FilasAfectadas: Object.values(resultado[0])[1] });
+            const resultado = yield conn.query("INSERT INTO " + tabla + " SET ? ", req.body);
+            return res.json({
+                FilasAfectadas: Object.values(resultado[0])[1],
+                UltimoID: Object.values(resultado[0])[2],
+            });
         }
         catch (error) {
             return res.status(500).json({

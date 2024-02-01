@@ -9,35 +9,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteBoletas = exports.updateBoletas = exports.createBoletas = exports.getBoletas = void 0;
+exports.deleteBoletas = exports.updateBoletas = exports.createBoletas = exports.getLastID = exports.getBoletas = void 0;
 const database_1 = require("../../database");
 function getBoletas(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const conn = yield (0, database_1.connect)();
-        const result = yield conn.query('select * from cantidadfiado');
+        const result = yield conn.query("select * from boletas");
         return res.json(result[0]);
     });
 }
 exports.getBoletas = getBoletas;
+function getLastID(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const conn = yield (0, database_1.connect)();
+        const result = yield conn.query("select LAST_INSERT_ID()");
+        return res.json(result[0]);
+    });
+}
+exports.getLastID = getLastID;
 function createBoletas(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const pregunta = req.body;
         const conn = yield (0, database_1.connect)();
-        const resultado = conn.query('INSERT INTO boletas SET ?', [pregunta]);
-        res.send('Creando Boletas');
+        const resultado = conn.query("INSERT INTO boletas SET ? ", [pregunta]);
+        res.send("Creando Boletas");
     });
 }
 exports.createBoletas = createBoletas;
 const updateBoletas = (req, res) => {
     console.log(req.body);
     console.log(req.params);
-    res.send('Actualizando Boletas');
+    res.send("Actualizando Boletas");
 };
 exports.updateBoletas = updateBoletas;
 const deleteBoletas = (req, res) => {
     console.log(req.body);
     console.log(req.params);
-    res.send('det Boletas');
+    res.send("det Boletas");
 };
 exports.deleteBoletas = deleteBoletas;
 //# sourceMappingURL=boletas.controller.js.map
