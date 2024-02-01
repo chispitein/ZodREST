@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { connect } from "../database";
+import { object } from "zod";
 
 //Obtener todos los datos de la tabla, el request no es ocupado, revisar si se puede sacar
 export const getAllTabla =
@@ -90,10 +91,13 @@ export const InsertRow =
       const conn = await connect();
       try {
         const resultado = await conn.query(
-          "INSERT INTO " + tabla + " SET ? ;  SELECT LAST_INSERT_ID; ",
+          "INSERT INTO " + tabla + " SET ? ",
           req.body
         );
-        return res.json({ FilasAfectadas: Object.values(resultado[0])[1] });
+        return res.json({
+          FilasAfectadas: Object.values(resultado[0])[1],
+          UltimoID: Object.values(resultado[0])[2],
+        });
       } catch (error) {
         return res.status(500).json({
           Message: "Problemas con el servidor SQL (2)",
