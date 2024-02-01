@@ -90,7 +90,7 @@ export const InsertRow =
       const conn = await connect();
       try {
         const resultado = await conn.query(
-          "INSERT INTO " + tabla + " SET ?  ",
+          "INSERT INTO " + tabla + " SET ? ;  SELECT LAST_INSERT_ID; ",
           req.body
         );
         return res.json({ FilasAfectadas: Object.values(resultado[0])[1] });
