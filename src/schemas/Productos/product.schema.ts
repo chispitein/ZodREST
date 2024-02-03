@@ -4,7 +4,7 @@ export const postProductSchema = z.object({
   body: z.object({
     NombreProd: z
       .string()
-      .nonempty("No puede estar vacio")
+      .nonempty("No puede estar vacio ni nulo")
       .min(6, "nombre de menos de 6 caracteres")
       .max(60, "Nombre demasiado largo -60"),
     Tamano: z.string().nonempty(),

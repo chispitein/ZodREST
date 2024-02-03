@@ -6,10 +6,10 @@ exports.postProductSchema = zod_1.z.object({
     body: zod_1.z.object({
         NombreProd: zod_1.z
             .string()
-            .nonempty("No puede estar vacio")
+            .nonempty("No puede estar vacio ni nulo")
             .min(6, "nombre de menos de 6 caracteres")
             .max(60, "Nombre demasiado largo -60"),
-        Tamano: zod_1.z.string().nonempty(), 
+        Tamano: zod_1.z.string().nonempty(),
         idTipoProducto: zod_1.z.number().nonnegative(),
         Cantidad: zod_1.z.string().nonempty(),
         idUnidadMedida: zod_1.z.number().nonnegative(),
